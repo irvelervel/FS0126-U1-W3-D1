@@ -123,7 +123,8 @@ const cantautore = {
 // const lastName = cantautore.lastName
 // const age = cantautore.age
 
-// l'OBJECT DESTRUCTURING ci fornisce una scorciatoia
+// l'OBJECT DESTRUCTURING ci fornisce una scorciatoia per recuperare proprietà da un oggetto
+// e creare allo stesso momento delle variabili con lo stesso nome
 const { firstName, lastName, age } = cantautore
 // const firstName = cantautore.firstName
 // const lastName = cantautore.lastName
@@ -178,3 +179,111 @@ console.log(
 )
 
 const realName2 = characters[1].realName
+
+// parliamo di stringhe...
+// in JS ci sono 2 delimitatori di stringhe: "" e ''
+const str1 = 'ciaone!'
+
+const str2 =
+  "Si utilizzano entrambi quando in una stringa dovete inserire un apostrofo... l'albero"
+
+//   però in realtà c'è un TERZO MODO: i BACKTICKS ``
+const str3 = `Il backtick è un altro modo per delimitare le stringhe... ma ha UN superpotere!`
+
+const myFirstName = 'Stefano'
+const myLastName = 'Casasola'
+
+const giveMeText = () => 'Io sono del testo!'
+
+const message =
+  'Il mio nome è ' + myFirstName + ' e il mio cognome è ' + myLastName
+// 'Il mio nome è Stefano e il mio cognome è Casasola'
+
+const betterMessage = `Il mio nome è ${myFirstName}
+e il mio cognome è ${myLastName}`
+
+const aVeryLongText = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis delectus praesentium impedit ut
+  ducimus officia nemo labore laboriosam, ipsum a soluta in? Expedita exercitationem mollitia quod
+  hic nemo iste earum? "Lorem" ipsum dolor sit, amet consectetur adipisicing elit. Quia nihil ut
+  suscipit voluptatibus eaque magnam, ${myFirstName} optio laborum qui ipsum fugit rerum voluptate vel dolorum,
+  cumque cupiditate tempora, distinctio perspiciatis sequi? Lorem ipsum dolor sit, amet consectetur
+  adipisicing elit. Nemo explicabo 'adipisci' recusandae facilis iure ${myLastName} nostrum accusantium, veniam quam
+  quibusdam at ipsum error vel laudantium? Sed aspernatur rem magni. Nesciunt, veritatis. Lorem ipsum
+  dolor sit ${giveMeText()} amet consectetur adipisicing elit. Delectus molestiae adipisci quas accusantium non sapiente
+  a quae ratione cumque at! Eveniet quaerat unde, excepturi molestiae sint eum inventore deleniti quia!`
+
+// concludiamo il capitolo stringhe con un recap dei metodi delle stringhe:
+
+const unaStringa = 'EPICODE vi insegna ad utilizzare il cervello!'
+
+unaStringa.toUpperCase() // 'EPICODE VI INSEGNA AD UTILIZZARE IL CERVELLO!'
+unaStringa.toLowerCase() // 'epicode vi insegna ad utilizzare il cervello'
+unaStringa.slice(0, 10) // 'EPICODE vi' // include I PRIMI 10 CARATTERI
+unaStringa.slice(11, 18) // 'insegna'
+unaStringa.charAt(2) // 'I' -> il TERZO carattere della stringa (che ha indice 2, come negli array!)
+unaStringa.charAt(20) // 'd' -> il DICIANNOVESIMO carattere della stringa (che ha indice 2, come negli array!)
+unaStringa.split(' ') // crea un array separando i caratteri ogni volta che trova uno spazio
+// -> ['EPICODE', 'vi', 'insegna', 'ad', 'utilizzare', 'il', 'cervello!']
+
+unaStringa.split('i') // ['EPICODE v', ' ', 'nsegna ad ut', 'l', 'zzare ', 'l cervello!']
+
+const arrayOfWords = unaStringa.split(' ')
+const arrayIniziali = []
+
+for (let i = 0; i < arrayOfWords.length; i++) {
+  // i è un valore da 0 a 6, questo ciclo frulla 7 volte!
+  // ogni parola è arrayOfWords[i]
+  // ogni iniziale di ogni parola è arrayOfWords[i].slice(0,1)
+  // la pusho nell'arrayIniziali
+  arrayIniziali.push(arrayOfWords[i].slice(0, 1))
+}
+
+console.log(arrayIniziali) // ['E', 'v', 'i', 'a', u', 'i', 'c']
+
+// startsWith(), endsWith(), includes() sono metodi delle stringhe che ritornano BOOLEANI!
+const course = 'EPICODE'
+course.startsWith('EPIC') // true
+course.endsWith('ODE') // true
+course.endsWith('EPI') // false
+course.includes('CO') // true
+course.includes('GI') // false
+
+course.charAt(0) // 'E' -> torna il carattere alla posizione richiesta
+course.indexOf('E') // 0 -> è l'INVERSO di charAt, torna la posizione in cui compare per la prima volta il carattere richiesto
+
+// METODI DEGLI ARRAY
+// Un array è una struttura dati complessa in JS che memorizza diversi elementi all'interno di una singola
+// variabile; gli elementi (a differenza degli oggetti) NON sono "etichettati" con una chiave, ma il fattore
+// che li differenzia è solamente la loro POSIZIONE all'interno dell'array: c'è il PRIMO elemento dell'array
+// il SECONDO, il TERZO e così via. La loro posizione (detta anche INDICE) si comincia a contare da ZERO.
+
+const myArrayOfBeautifulPets = ['tarantula', 'salamander', 'alligator', 'furby']
+myArrayOfBeautifulPets.push('ralph') // aggiunge alla fine dell'array
+myArrayOfBeautifulPets.pop() // elimina l'ultimo elemento
+myArrayOfBeautifulPets.unshift('cobra') // aggiunge all'inizio dell'array
+myArrayOfBeautifulPets.shift() // rimuove il primo elemento
+
+// per aggiungere o rimuovere in mezzo all'array dobbiamo utilizzare SPLICE()
+// per inserire un elemento tra la salamandra e l'alligatore
+myArrayOfBeautifulPets.splice(2, 0, 'anaconda') // dalla posizione DUE, tolgo ZERO, aggiungo 'anaconda'
+myArrayOfBeautifulPets.splice(2, 1) // dalla posizione DUE, tolgo UNO (l'anaconda di prima)
+// sono tornato all'array iniziale!
+
+// una proprietà degli array che usiamo spesso è la LENGTH -> lunghezza, pari al NUMERO degli elementi
+myArrayOfBeautifulPets.length // 4
+// ricordiamoci sempre che il primo elemento di un qualsiasi array ha indice 0
+// ricordiamoci sempre che l'ultimo elemento di un qualsiasi array ha indice length-1
+
+// ci siamo resi conto scorsa settimana che il ciclo FOR è uno strumento PERFETTO per ESPLORARE gli ARRAY!
+// se noi facciamo un FOR con una i che comincia da 0 e finisce PRIMA di raggiungere la length
+// di una array, otteniamo SEMPRE una i che è un INDICE VALIDO per quell'array!
+
+for (let i = 0; i < myArrayOfBeautifulPets.length; i++) {
+  // la i varrà nelle varie iterazioni del for: 0 - 1 - 2 - 3
+  // quindi è sempre un NUMERO, ma rappresenta anche un indice valido per un elemento di myArrayOfBeautifulPets
+  console.log(i) // 0 - 1 - 2 - 3
+  console.log(myArrayOfBeautifulPets[i]) // 'tarantula' - 'salamander' - 'alligator' - 'furby'
+}
+
+// NUOVI METODI DEGLI ARRAY, INTRODOTTI CON ES6
+// forEach(), map(), filter(), reduce()

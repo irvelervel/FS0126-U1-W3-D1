@@ -165,9 +165,9 @@ const characters = [
 //     character.birth_year,
 // )
 
-// const { realName, eye_color, birth_year } = characters[0]
+const { realName, eye_color, birth_year } = characters[0]
 
-const realName = characters[0].realName
+// const realName = characters[0].realName
 
 console.log(
   'Mi chiamo ' +
@@ -287,3 +287,128 @@ for (let i = 0; i < myArrayOfBeautifulPets.length; i++) {
 
 // NUOVI METODI DEGLI ARRAY, INTRODOTTI CON ES6
 // forEach(), map(), filter(), reduce()
+
+// FOREACH
+// .forEach() è un metodo degli array che ci permette di CICLARE l'array senza bisogno del for.
+myArrayOfBeautifulPets.forEach((pet) => {
+  console.log(pet) // 'tarantula' - 'salamander' - 'alligator' - 'furby'
+  // pet sarebbe l'equivalente in un normale ciclo for di myArrayOfBeautifulPets[i]
+})
+
+const myArrayOfCats = [
+  {
+    name: 'Kitty',
+    age: 2,
+    furColor: 'black',
+  },
+  {
+    name: 'Puffy',
+    age: 3,
+    furColor: 'white',
+  },
+  {
+    name: 'Dummy',
+    age: 4,
+    furColor: 'orange',
+  },
+]
+
+const justCatsNames = []
+
+myArrayOfCats.forEach((gigio) => {
+  // il vostro blocco di codice verrà eseguito AUTOMATICAMENTE TANTE VOLTE
+  // QUANTI SONO GLI ELEMENTI DELL'ARRAY (è già come un for che gira 3 volte)
+  console.log('STAMPIAMO TUTTI I NOMI', gigio.name)
+  // gigio è l'ELEMENTO CORRENTE dell'iterazione dell'array
+  justCatsNames.push(gigio.name)
+})
+
+for (let i = 0; i < myArrayOfCats.length; i++) {
+  // la i è un numero
+  // se volessi fare il console.log dei NOMI dei gatti...
+  console.log(myArrayOfCats[i].name)
+}
+
+// gigio === myArrayOfCats[i]
+
+const numbers = [4, 6, 10, 90, -3]
+numbers.forEach((gigio, i) => {
+  console.log(gigio * 3)
+  //   volendo la "i" sarebbe la stessa del for! parte da 0, e rappresenterà l'indice dell'elemento corrente
+})
+
+// quindi, concludendo -> forEach è un sostituto più o meno diretto del ciclo for quando viene utilizzato
+// per ciclare gli array!
+// volendo viene pure esposta la "i" come secondo parametro, dopo il singolo elemento del ciclo
+
+// METODO MAP: il metodo MAP serve a TRASFORMARE un array in un altro array (della stessa lunghezza).
+
+const names = ['Antonio', 'Camilla', 'Hina', 'Valeria', 'Stefano', 'Cristina']
+
+// ora voglio ottenere un altro array con tutti questi nomi IN MAIUSCOLO
+const uppercaseNames = []
+for (let i = 0; i < names.length; i++) {
+  // i è numero, va da 0 a 5 (6 elementi totali)
+  // names[i] è uno dei nomi, es. 'Antonio', 'Camilla', etc.
+  // pusho dentro uppercaseNames l'elemento corrente in maiuscolo
+  uppercaseNames.push(names[i].toUpperCase())
+}
+
+// ...e con un .map()?
+const againUpperCaseNames = names.map((nome) => {
+  // nome è il singolo nome
+  // MAP FUNZIONA COSÌ: PER OGNI nome DEVO RITORNARNE LA VERSIONE TRASFORMATA
+  return nome.toUpperCase()
+})
+
+console.log(againUpperCaseNames) // un array di lunghezza pari a names, dove OGNI NOME è stato
+// trasformato (individualmente) nella sua versione in maiuscolo!
+
+// altro esempio: da un array di PAROLE, ritorniamo un array di SOLE INIZIALI
+const parole = ['ciao', 'sono', 'Stefano', 'e', 'insegno']
+// voglio ottenere ['c', 's', 'S', 'e', 'i']
+
+const soloIniziali = parole.map((p) => {
+  return p.charAt(0) // isolando solo l'iniziale, la lettera alla posizione 0
+})
+// ULTRA PRO MAX VERSION -> const soloIniziali = parole.map((p) => p.charAt(0))
+
+// ultimo esempio map: trasformiamo un'array di stringhe in un array di oggetti dove ogni stringa
+// viene salvata in una proprietà 'value'
+
+// ['stefano'] -> [{value: 'stefano'}]
+
+const arrayOfObjectsWithNames = names.map((name) => {
+  return {
+    value: name, // per ogni name ritorno un oggetto, dove name è il valore della proprietà "value"
+    otherValue: 'Gigio',
+  }
+})
+
+console.log(names)
+console.log(arrayOfObjectsWithNames)
+
+// FILTER -> filter serve a filtrare un array; dato un array di partenza, otterrò un array finale in
+// cui non necessariamente avrò TUTTI gli elementi di quello iniziale.
+
+const femaleNames = names.filter((name) => {
+  if (name.endsWith('a')) {
+    return true
+  } else {
+    return false
+  }
+})
+
+const shortNames = names.filter((name) => {
+  if (name.length <= 5) {
+    return true
+  } else {
+    return false
+  }
+})
+
+// filter deve da ogni elemento ritornare true o false; se torna true, quell'elemento farà parte
+// dell'array "filtrato", se ritorna false invece quell'elemento verrà scartato
+
+// MAP torna un array SEMPRE della stessa lunghezza, con elementi possibilmente diversi da quelli originali;
+// FILTER torna un array potenzialmente di lunghezza diversa, ma gli elementi al suo interno saranno inalterati

@@ -65,3 +65,116 @@ const salutamiLungamente = function () {
 const salutala = () => {
   'Ciao Hina!' // <-- NON STO RITORNANDO 'Ciao Hina!'
 }
+
+// SPREAD OPERATOR --> ...
+// lo spread operator serve a effettuare una COPIA di proprietà/elementi da una sorgente ad una destinazione
+
+let a = 5
+let b = a // "b vale 5"
+a = 10
+console.log(b) // ????? 5
+
+// ora facciamo lo stesso esempio, ma con entità COMPLESSE
+
+let objA = { value: 5 }
+let objB = objA // questa riga NON duplica l'oggetto!
+
+objA.value = 10
+console.log(objB.value) // ?????? 10
+// in soldoni: quando si tratta di dati PRIMITIVI (come a e b, che erano numeri) con l'operatore =
+// JS crea una VERA COPIA della variabile
+// quando però utilizziamo l'operatore = per creare una copia di un'entità COMPLESSA, JS non DUPLICA
+// l'oggetto/array! crea semplicemente un nuovo "puntatore" per accedere alla stessa locazione di memoria
+
+// PER CREARE OBJA e OBJB IN MODO SEPARATO, SCOLLEGATO NON POSSIAMO RICORRERE A objB = objA (come avremmo
+// fatto con le variabili primitive!)
+
+// creiamo ora una VERA COPIA di entità complesse tramite lo SPREAD OPERATOR
+
+const objectA = { value: 5 }
+const objectB = { ...objectA } // ho creato un nuovo "guscio" con le graffe e ci ho trasportato dentro
+// una copia di TUTTE le proprietà di objectA grazie allo SPREAD OPERATOR ...
+// ora objectA e objectB sono due oggetti SEPARATI in memoria!
+
+// sintassi alternativa allo spread operator per creare una VERA COPIA di objectA
+// utilizzando il metodo --> Object.assign({}, objectA)
+
+// a questo punto posso modificare objectA SENZA condizionare il valore di objectB
+objectA.value = 10
+console.log(objectB.value) // 5
+
+const arrA = [5, 6, 7]
+const arrB = [...arrA] // VERA COPIA
+
+arrA.push(8) // la length di A ora è 4
+console.log(arrB.length) // 3
+
+// OBJECT DESTRUCTURING ("destrutturazione di oggetti")
+
+const cantautore = {
+  firstName: 'Al',
+  lastName: 'Bano',
+  age: 100,
+}
+
+// ora vogliamo salvare in variabili separate il nome, cognome, età di Al Bano
+
+// const firstName = cantautore.firstName
+// const lastName = cantautore.lastName
+// const age = cantautore.age
+
+// l'OBJECT DESTRUCTURING ci fornisce una scorciatoia
+const { firstName, lastName, age } = cantautore
+// const firstName = cantautore.firstName
+// const lastName = cantautore.lastName
+// const age = cantautore.age
+
+const nome = cantautore.firstName
+// const firstName = cantautore.firstName
+
+const characters = [
+  {
+    realName: 'Luke Skywalker',
+    height: 172,
+    mass: 277,
+    hair_color: 'blond',
+    skin_color: 'fair',
+    eye_color: 'blue',
+    birth_year: '19BBY',
+    gender: 'male',
+  },
+  {
+    realName: 'Darth Vader',
+    height: 202,
+    mass: 136,
+    hair_color: 'none',
+    skin_color: 'white',
+    eye_color: 'yellow',
+    birth_year: '41.9BBY',
+    gender: 'male',
+  },
+]
+
+// console.log(
+//   'Mi chiamo ' +
+//     character.name +
+//     ', i miei occhi sono ' +
+//     character.eye_color +
+//     ', sono nato nel ' +
+//     character.birth_year,
+// )
+
+// const { realName, eye_color, birth_year } = characters[0]
+
+const realName = characters[0].realName
+
+console.log(
+  'Mi chiamo ' +
+    realName +
+    ', i miei occhi sono ' +
+    eye_color +
+    ', sono nato nel ' +
+    birth_year,
+)
+
+const realName2 = characters[1].realName
